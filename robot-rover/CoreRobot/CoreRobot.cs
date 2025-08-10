@@ -93,6 +93,7 @@ namespace RobotRover
             {
                 IsLost = true;
                 LeaveScent(x, y, moveDirection);
+                return;
             }
 
             x = newX;

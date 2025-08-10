@@ -48,7 +48,7 @@ namespace RobotRover.Test
 
             robot.ExecuteInstructions("F");
             Assert.IsTrue(robot.IsLost);
-            Assert.AreEqual(11, robot.Y);
+            Assert.AreEqual(10, robot.Y);
         }
 
         [TestMethod]
@@ -59,7 +59,7 @@ namespace RobotRover.Test
             robot.ExecuteInstructions("F");
             Assert.IsTrue(robot.IsLost);
             Assert.AreEqual(5, robot.X);
-            Assert.AreEqual(11, robot.Y);
+            Assert.AreEqual(10, robot.Y);
             Assert.IsTrue(planet.HasScent(5, 10));
             Assert.AreEqual(Direction.North, planet.GetScentDirection(5, 10));
         }
@@ -82,11 +82,12 @@ namespace RobotRover.Test
         {
             var planet = new Planet(10, 10);
             planet.AddScent(5, 10, Direction.West);
+
             var robot = new CoreRobot(planet, 5, 10, Direction.North);
 
             robot.ExecuteInstructions("F");
             Assert.AreEqual(5, robot.X);
-            Assert.AreEqual(11, robot.Y);
+            Assert.AreEqual(10, robot.Y);
             Assert.AreEqual(Direction.North, robot.Facing);
             Assert.IsTrue(robot.IsLost);
         }
@@ -94,10 +95,10 @@ namespace RobotRover.Test
         [TestMethod]
         public void StopsMovingWhenLost()
         {
-            var robot = new CoreRobot(new Planet(10, 10), 5, 9, Direction.North);
+            var robot = new CoreRobot(new Planet(10, 10), 5, 10, Direction.North);
             robot.ExecuteInstructions("FF");
             Assert.IsTrue(robot.IsLost);
-            Assert.AreEqual(11, robot.Y);
+            Assert.AreEqual(10, robot.Y);
         }
     }
 }
