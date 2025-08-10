@@ -23,3 +23,5 @@ I have a abstract class `AbstractRobot` which can execute instructions, and a ba
 I created a core robot used for the exercise.
 
 I created a robot that extends the core with an additional instructions to demonostrate extensibility.
+
+I previously had interfaces and external instructions but I didn't like that it exposed internal data.
