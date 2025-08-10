@@ -25,3 +25,6 @@ I created a core robot used for the exercise.
 I created a robot that extends the core with an additional instructions to demonostrate extensibility.
 
 I previously had interfaces and external instructions but I didn't like that it exposed internal data.
+
+## Considerations
+In the corners of the map, it's possible for one robot to go off an edge in one direction, leaving a scent; and second robot going in the adjacent direction overriding the scent;

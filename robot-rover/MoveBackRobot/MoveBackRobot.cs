@@ -7,23 +7,52 @@ namespace RobotRover
             AddInstruction('B', MoveBack);
         }
 
-        private void MoveBack()
+        private Tuple<int, int> GetBackPosition()
+        {
+            var newX = x;
+            var newY = y;
+
+            switch (Facing)
+            {
+                case Direction.North:
+                    newY--;
+                    break;
+                case Direction.East:
+                    newX--;
+                    break;
+                case Direction.South:
+                    newY++;
+                    break;
+                case Direction.West:
+                    newX++;
+                    break;
+            }
+
+            return Tuple.Create(newX, newY);
+        }
+
+        private Direction GetBackDirection()
         {
             switch (Facing)
             {
                 case Direction.North:
-                    this.y--;
-                    break;
+                    return Direction.South;
                 case Direction.East:
-                    this.x--;
-                    break;
+                    return Direction.West;
                 case Direction.South:
-                    this.y++;
-                    break;
+                    return Direction.North;
                 case Direction.West:
-                    this.x++;
-                    break;
+                    return Direction.East;
+                default:
+                    throw new ArgumentException("Invalid direction");
             }
+        }
+
+        private void MoveBack()
+        {
+            var newPosition = GetBackPosition();
+            var backDirection = GetBackDirection();
+            Move(newPosition.Item1, newPosition.Item2, backDirection);
         }
     }
 }

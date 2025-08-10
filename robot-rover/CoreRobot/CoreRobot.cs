@@ -10,6 +10,7 @@ namespace RobotRover
         public int Y => y;
         internal Direction facing;
         public Direction Facing => facing;
+        public bool IsLost { get; private set; }
 
         public CoreRobot(Planet planet, int x, int y, Direction facing)
         : base()
@@ -30,27 +31,78 @@ namespace RobotRover
             AddInstruction('R', TurnRight);
         }
 
-        private void Forward()
+        private void UpdateScent(int x, int y, Direction direction)
         {
+            planet.AddScent(x, y, direction);
+        }
 
-            var oldX = x;
-            var oldY = y;
+        private bool HasScentInDirection(int x, int y, Direction direction)
+        {
+            return planet.HasScent(x, y) && planet.GetScentDirection(x, y) == direction;
+        }
+
+        private bool AreLost(int x, int y)
+        {
+            return !planet.IsValidPosition(x, y);
+        }
+
+        private void LeaveScent(int x, int y, Direction direction)
+        {
+            UpdateScent(x, y, direction);
+        }
+
+        private Tuple<int, int> GetForwardPosition()
+        {
+            var newX = x;
+            var newY = y;
 
             switch (facing)
             {
                 case Direction.North:
-                    y++;
+                    newY++;
                     break;
                 case Direction.East:
-                    x++;
+                    newX++;
                     break;
                 case Direction.South:
-                    y--;
+                    newY--;
                     break;
                 case Direction.West:
-                    x--;
+                    newX--;
                     break;
             }
+
+            return Tuple.Create(newX, newY);
+        }
+
+        internal void Move(int newX, int newY, Direction moveDirection)
+        {
+            if (IsLost)
+            {
+                // do nothing
+                return;
+            }
+
+            if (HasScentInDirection(x, y, moveDirection))
+            {
+                // do nothing
+                return;
+            }
+
+            if (AreLost(newX, newY))
+            {
+                IsLost = true;
+                LeaveScent(x, y, moveDirection);
+            }
+
+            x = newX;
+            y = newY;
+        }
+
+        private void Forward()
+        {
+            var newPosition = GetForwardPosition();
+            Move(newPosition.Item1, newPosition.Item2, facing);
         }
 
         private void TurnLeft()

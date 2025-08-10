@@ -21,7 +21,7 @@ namespace RobotRoverTest
         }
 
         [TestMethod]
-        public void TestHasScent()
+        public void CheckIfHasScent()
         {
             var planet = new Planet(10, 10);
 
@@ -29,26 +29,41 @@ namespace RobotRoverTest
         }
 
         [TestMethod]
-        public void TestHasScentInvalidPosition()
+        public void ThrowsExceptionIfInvalidHasScentPosition()
         {
             var planet = new Planet(10, 10);
             Assert.ThrowsExactly<ArgumentException>(() => planet.HasScent(11, 11));
         }
 
         [TestMethod]
-        public void TestAddScent()
+        public void CanAddAndGetScent()
         {
             var planet = new Planet(10, 10);
 
-            planet.AddScent(1, 1);
+            planet.AddScent(1, 1, Direction.North);
             Assert.IsTrue(planet.HasScent(1, 1));
+            Assert.AreEqual(Direction.North, planet.GetScentDirection(1, 1));
         }
 
         [TestMethod]
-        public void TestAddScentInvalidPosition()
+        public void ThrowsExceptionForInvalidAddScentPosition()
         {
             var planet = new Planet(10, 10);
-            Assert.ThrowsExactly<ArgumentException>(() => planet.AddScent(11, 11));
+            Assert.ThrowsExactly<ArgumentException>(() => planet.AddScent(11, 11, Direction.North));
+        }
+
+        [TestMethod]
+        public void ThrowsExceptionIfNoScentDirection()
+        {
+            var planet = new Planet(10, 10);
+            Assert.ThrowsExactly<ArgumentException>(() => planet.GetScentDirection(1, 1));
+        }
+
+        [TestMethod]
+        public void ThrowsExceptionForInvalidGetScentDirectionPosition()
+        {
+            var planet = new Planet(10, 10);
+            Assert.ThrowsExactly<ArgumentException>(() => planet.GetScentDirection(11, 11));
         }
     }
 }

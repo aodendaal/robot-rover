@@ -4,14 +4,17 @@ namespace RobotRover
     {
         private readonly int width;
         private readonly int height;
-        private readonly bool[,] scents;
+
+        private readonly bool[,] hasScents;
+        private readonly Direction[,] scentDirection;
 
         public Planet(int width, int height)
         {
             this.width = width;
             this.height = height;
 
-            scents = new bool[width, height];
+            hasScents = new bool[width, height];
+            scentDirection = new Direction[width, height];
         }
 
         public bool IsValidPosition(int x, int y)
@@ -23,20 +26,36 @@ namespace RobotRover
         {
             if (!IsValidPosition(x, y))
             {
-                throw new ArgumentException("Invalid position");
+                throw new ArgumentException("Invalid position for scent");
             }
 
-            return scents[x, y];
+            return hasScents[x, y];
         }
 
-        public void AddScent(int x, int y)
+        public Direction GetScentDirection(int x, int y)
+        {
+            if (!IsValidPosition(x, y))
+            {
+                throw new ArgumentException("Invalid position");
+            }
+            
+            if (!hasScents[x, y])
+            {
+                throw new ArgumentException("No scent at position");
+            }
+
+            return scentDirection[x, y];
+        }
+
+        public void AddScent(int x, int y, Direction direction)
         {
             if (!IsValidPosition(x, y))
             {
                 throw new ArgumentException("Invalid position");
             }
 
-            scents[x, y] = true;
+            hasScents[x, y] = true;
+            scentDirection[x, y] = direction;
         }
     }
 }
