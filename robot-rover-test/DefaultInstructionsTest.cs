@@ -3,18 +3,16 @@ namespace RobotRover.Test
     [TestClass]
     public class DefaultInstructionsTest
     {
-        private InstructionSet instructionSet = new InstructionSet();
-
         [TestMethod]
         public void CanMoveForward()
         {
-            var robot = new Robot(new Planet(10, 10), 5, 5, Direction.North, instructionSet);
+            var robot = new Robot(new Planet(10, 10), 5, 5, Direction.North);
 
             DefaultInstructions.MoveForward(robot);
 
             Assert.AreEqual(6, robot.Y);
 
-            var robot2 = new Robot(new Planet(5, 5), 2, 2, Direction.East, instructionSet);
+            var robot2 = new Robot(new Planet(5, 5), 2, 2, Direction.East);
 
             DefaultInstructions.MoveForward(robot2);
 
@@ -24,13 +22,13 @@ namespace RobotRover.Test
         [TestMethod]
         public void CanTurnLeft()
         {
-            var robot = new Robot(new Planet(10, 10), 5, 5, Direction.North, instructionSet);
+            var robot = new Robot(new Planet(10, 10), 5, 5, Direction.North);
 
             DefaultInstructions.TurnLeft(robot);
 
             Assert.AreEqual(Direction.West, robot.Facing);
 
-            var robot2 = new Robot(new Planet(10, 10), 5, 5, Direction.East, instructionSet);
+            var robot2 = new Robot(new Planet(10, 10), 5, 5, Direction.East);
 
             DefaultInstructions.TurnLeft(robot2);
 
@@ -40,13 +38,13 @@ namespace RobotRover.Test
         [TestMethod]
         public void CanTurnRight()
         {
-            var robot = new Robot(new Planet(10, 10), 5, 5, Direction.North, instructionSet);
+            var robot = new Robot(new Planet(10, 10), 5, 5, Direction.North);
 
             DefaultInstructions.TurnRight(robot);
 
             Assert.AreEqual(Direction.East, robot.Facing);
 
-            var robot2 = new Robot(new Planet(10, 10), 5, 5, Direction.West, instructionSet);
+            var robot2 = new Robot(new Planet(10, 10), 5, 5, Direction.West);
 
             DefaultInstructions.TurnRight(robot2);
 
