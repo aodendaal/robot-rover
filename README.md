@@ -16,3 +16,6 @@ With the console app created, generate a file file named `input.txt` and run the
 ./robot-rover
 ```
 This will generate a file `output.txt` with the final position of the robots from the input.
+
+## Considerations
+I have a abstract class `AbstractRobot` which uses an instruction interface 'IInstructionProperties` which my core robot is built upon and can be extended to support new instruction and new robot properties without affecting default behavior.

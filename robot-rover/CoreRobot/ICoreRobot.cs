@@ -1,6 +1,6 @@
 namespace RobotRover
 {
-    public interface IRobot
+    public interface ICoreRobot : IInstructionProperties
     {
         int X { get; set; }
         int Y { get; set; }
