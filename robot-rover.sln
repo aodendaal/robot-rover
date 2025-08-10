@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "robot-rover", "robot-rover\robot-rover.csproj", "{C674461B-C43C-4DAB-9DCA-7CB3023086AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "robot-rover-test", "robot-rover-test\robot-rover-test.csproj", "{3744D8DB-3291-44F1-81BD-BD0CB81F536C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C674461B-C43C-4DAB-9DCA-7CB3023086AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C674461B-C43C-4DAB-9DCA-7CB3023086AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C674461B-C43C-4DAB-9DCA-7CB3023086AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C674461B-C43C-4DAB-9DCA-7CB3023086AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3744D8DB-3291-44F1-81BD-BD0CB81F536C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3744D8DB-3291-44F1-81BD-BD0CB81F536C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3744D8DB-3291-44F1-81BD-BD0CB81F536C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3744D8DB-3291-44F1-81BD-BD0CB81F536C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
