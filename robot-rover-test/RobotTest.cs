@@ -10,7 +10,8 @@ namespace RobotRover.Test
         public void CanCreateRobot()
         {
             var planet = new Planet(10, 10);
-            var robot = new Robot(planet, 5, 5, Direction.North);
+            var instructionSet = new InstructionSet();
+            var robot = new Robot(planet, 5, 5, Direction.North, instructionSet);
 
             Assert.AreEqual(5, robot.X);
             Assert.AreEqual(5, robot.Y);
