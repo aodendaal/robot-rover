@@ -14,7 +14,7 @@ namespace RobotRover.Test
 
             Assert.AreEqual(5, robot.X);
             Assert.AreEqual(5, robot.Y);
-            Assert.AreEqual(Direction.North, robot.Direction);
+            Assert.AreEqual(Direction.North, robot.Facing);
         }
     }
 }

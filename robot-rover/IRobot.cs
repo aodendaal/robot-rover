@@ -4,6 +4,6 @@ namespace RobotRover
     {
         int X { get; set; }
         int Y { get; set; }
-        Direction Direction { get; set; }
+        Direction Facing { get; set; }
     }
 }
