@@ -7,6 +7,13 @@ namespace RobotRover.Test
     public class CoreRobotTest
     {
         [TestMethod]
+        public void ThrowsExceptionIfInvalidStartingPosition()
+        {
+            var planet = new Planet(10, 10);
+            Assert.ThrowsExactly<ArgumentException>(() => new CoreRobot(planet, 11, 11, Direction.North));
+        }
+
+        [TestMethod]
         public void CanAccessProperties()
         {
             var planet = new Planet(10, 10);

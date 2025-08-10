@@ -15,6 +15,12 @@ namespace RobotRover
         : base()
         {
             this.planet = planet;
+
+            if (!planet.IsValidPosition(x, y))
+            {
+                throw new ArgumentException("Invalid starting position");
+            }
+
             this.x = x;
             this.y = y;
             this.facing = facing;
