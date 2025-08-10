@@ -2,13 +2,13 @@ namespace RobotRover
 {
     public static class CoreInstructions
     {
-        public static InstructionSet<ICoreRobot> GetInstrunctions()
+        public static InstructionSet<ICoreRobot> GetAsSet()
         {
             var instructionSet = new InstructionSet<ICoreRobot>();
 
-            instructionSet.AddInstruction('F', new Instruction<ICoreRobot>(MoveForward));
-            instructionSet.AddInstruction('L', new Instruction<ICoreRobot>(TurnLeft));
-            instructionSet.AddInstruction('R', new Instruction<ICoreRobot>(TurnRight));
+            instructionSet.Add('F', new Instruction<ICoreRobot>(MoveForward));
+            instructionSet.Add('L', new Instruction<ICoreRobot>(TurnLeft));
+            instructionSet.Add('R', new Instruction<ICoreRobot>(TurnRight));
 
             return instructionSet;
         }

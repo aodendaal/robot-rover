@@ -20,6 +20,22 @@ namespace RobotRover.Test
         }
 
         [TestMethod]
+        public void CanMoveForwardUsingKey()
+        {
+            var robot = new CoreRobot(new Planet(10, 10), 5, 5, Direction.North);
+
+            robot.ExecuteInstruction('F');
+
+            Assert.AreEqual(6, robot.Y);
+
+            var robot2 = new CoreRobot(new Planet(5, 5), 2, 2, Direction.East);
+
+            robot2.ExecuteInstruction('F');
+
+            Assert.AreEqual(3, robot2.X);
+        }
+
+        [TestMethod]
         public void CanTurnLeft()
         {
             var robot = new CoreRobot(new Planet(10, 10), 5, 5, Direction.North);
@@ -31,6 +47,22 @@ namespace RobotRover.Test
             var robot2 = new CoreRobot(new Planet(10, 10), 5, 5, Direction.East);
 
             CoreInstructions.TurnLeft(robot2);
+
+            Assert.AreEqual(Direction.North, robot2.Facing);
+        }
+
+        [TestMethod]
+        public void CanTurnLeftUsingKey()
+        {
+            var robot = new CoreRobot(new Planet(10, 10), 5, 5, Direction.North);
+
+            robot.ExecuteInstruction('L');
+
+            Assert.AreEqual(Direction.West, robot.Facing);
+
+            var robot2 = new CoreRobot(new Planet(10, 10), 5, 5, Direction.East);
+
+            robot2.ExecuteInstruction('L');
 
             Assert.AreEqual(Direction.North, robot2.Facing);
         }
@@ -50,5 +82,21 @@ namespace RobotRover.Test
 
             Assert.AreEqual(Direction.North, robot2.Facing);
         }   
+
+        [TestMethod]
+        public void CanTurnRightUsingKey()
+        {
+            var robot = new CoreRobot(new Planet(10, 10), 5, 5, Direction.North);
+
+            robot.ExecuteInstruction('R');
+
+            Assert.AreEqual(Direction.East, robot.Facing);
+
+            var robot2 = new CoreRobot(new Planet(10, 10), 5, 5, Direction.West);
+
+            robot2.ExecuteInstruction('R');
+
+            Assert.AreEqual(Direction.North, robot2.Facing);
+        }
     }
 }

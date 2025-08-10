@@ -1,9 +1,10 @@
 namespace RobotRover
 {
-    public abstract class AbstractRobot<T> where T : IInstructionProperties
+    public abstract class AbstractRobot<T> where T : class,IInstructionProperties
     {
         private readonly Planet planet;
-        public InstructionSet<T> InstructionSet { get; set; }
+        private InstructionSet<T> instructionSet { get; set; }
+
         /// <summary>
         /// Creates a new robot at the given position and direction.
         /// </summary>
@@ -12,7 +13,23 @@ namespace RobotRover
         public AbstractRobot(Planet planet, InstructionSet<T> instructionSet)
         {
             this.planet = planet;
-            this.InstructionSet = instructionSet;
+            this.instructionSet = instructionSet;
+        }
+
+        public void ExecuteInstruction(char instructionKey)
+        {
+            if (!instructionSet.ContainsKey(instructionKey))
+            {
+                throw new InvalidOperationException($"Instruction {instructionKey} not found");
+            }
+
+            var instruction = instructionSet[instructionKey];
+
+            var robot = this as T;
+            if (robot != null)
+            {
+                instruction.Execute(robot);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace RobotRover
         public Direction Facing { get; set; }
 
         public CoreRobot(Planet planet, int x, int y, Direction facing)
-        : base(planet, CoreInstructions.GetInstrunctions())
+        : base(planet, CoreInstructions.GetAsSet())
         {
             this.X = x;
             this.Y = y;
