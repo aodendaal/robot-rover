@@ -1,17 +1,88 @@
 namespace RobotRover
 {
-    public class CoreRobot : AbstractRobot<ICoreRobot>, ICoreRobot
+    public class CoreRobot : AbstractRobot
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public Direction Facing { get; set; }
+        private readonly Planet planet;
+
+        internal int x;
+        public int X => x;
+        internal int y;
+        public int Y => y;
+        internal Direction facing;
+        public Direction Facing => facing;
 
         public CoreRobot(Planet planet, int x, int y, Direction facing)
-        : base(planet, CoreInstructions.GetAsSet())
+        : base()
         {
-            this.X = x;
-            this.Y = y;
-            this.Facing = facing;
+            this.planet = planet;
+            this.x = x;
+            this.y = y;
+            this.facing = facing;
+
+            AddInstruction('F', Forward);
+            AddInstruction('L', TurnLeft);
+            AddInstruction('R', TurnRight);
+        }
+
+        private void Forward()
+        {
+
+            var oldX = x;
+            var oldY = y;
+
+            switch (facing)
+            {
+                case Direction.North:
+                    y++;
+                    break;
+                case Direction.East:
+                    x++;
+                    break;
+                case Direction.South:
+                    y--;
+                    break;
+                case Direction.West:
+                    x--;
+                    break;
+            }
+        }
+
+        private void TurnLeft()
+        {
+            switch (facing)
+            {
+                case Direction.North:
+                    facing = Direction.West;
+                    break;
+                case Direction.West:
+                    facing = Direction.South;
+                    break;
+                case Direction.South:
+                    facing = Direction.East;
+                    break;
+                case Direction.East:
+                    facing = Direction.North;
+                    break;
+            }
+        }
+
+        private void TurnRight()
+        {
+            switch (facing)
+            {
+                case Direction.North:
+                    facing = Direction.East;
+                    break;
+                case Direction.East:
+                    facing = Direction.South;
+                    break;
+                case Direction.South:
+                    facing = Direction.West;
+                    break;
+                case Direction.West:
+                    facing = Direction.North;
+                    break;
+            }
         }
     }
 }

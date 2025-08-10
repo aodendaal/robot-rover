@@ -1,15 +1,15 @@
 namespace RobotRover
 {
-    public class InstructionSet<T> where T : IInstructionProperties
+    public class InstructionSet
     {
-        private Dictionary<char, Instruction<T>> instructions;
+        private Dictionary<char, Action> instructions;
 
         public InstructionSet()
         {
-            instructions = new Dictionary<char, Instruction<T>>();
+            instructions = new Dictionary<char, Action>();
         }
 
-        public Instruction<T> this[char commandKey]
+        public Action this[char commandKey]
         {
             get
             {
@@ -22,7 +22,7 @@ namespace RobotRover
             return instructions.ContainsKey(commandKey);
         }
 
-        public void Add(char commandKey, Instruction<T> instruction)
+        public void Add(char commandKey, Action instruction)
         {
             instructions.Add(commandKey, instruction);
         }
