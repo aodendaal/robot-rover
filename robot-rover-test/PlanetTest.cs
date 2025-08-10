@@ -7,17 +7,25 @@ namespace RobotRoverTest
     public class PlanetTest
     {
         [TestMethod]
+        public void CheckWidthAndHeight()
+        {
+            var planet = new Planet(10, 10);
+            Assert.AreEqual(10, planet.Width);
+            Assert.AreEqual(10, planet.Height);
+        }
+
+        [TestMethod]
         public void TestIsValidPosition()
         {
             var planet = new Planet(10, 10);
 
             Assert.IsTrue(planet.IsValidPosition(0, 0));
-            Assert.IsTrue(planet.IsValidPosition(9, 9));
+            Assert.IsTrue(planet.IsValidPosition(10, 10));
             
             Assert.IsFalse(planet.IsValidPosition(-1, 0));
             Assert.IsFalse(planet.IsValidPosition(0, -1));
-            Assert.IsFalse(planet.IsValidPosition(10, 0));
-            Assert.IsFalse(planet.IsValidPosition(0, 10));
+            Assert.IsFalse(planet.IsValidPosition(11, 0));
+            Assert.IsFalse(planet.IsValidPosition(0, 11));
         }
 
         [TestMethod]

@@ -19,7 +19,7 @@ namespace RobotRover
 
             if (!planet.IsValidPosition(x, y))
             {
-                throw new ArgumentException("Invalid starting position");
+                throw new ArgumentException($"Invalid starting position: {x}, {y} for planet {planet.Width}x{planet.Height}");
             }
 
             this.x = x;

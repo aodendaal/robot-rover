@@ -3,7 +3,11 @@ namespace RobotRover
     public class Planet
     {
         private readonly int width;
+
+        public int Width => width;
+
         private readonly int height;
+        public int Height => height;
 
         private readonly bool[,] hasScents;
         private readonly Direction[,] scentDirection;
@@ -13,13 +17,13 @@ namespace RobotRover
             this.width = width;
             this.height = height;
 
-            hasScents = new bool[width, height];
-            scentDirection = new Direction[width, height];
+            hasScents = new bool[this.width + 1, this.height + 1];
+            scentDirection = new Direction[this.width + 1, this.height + 1];
         }
 
         public bool IsValidPosition(int x, int y)
         {
-            return x >= 0 && x < width && y >= 0 && y < height;
+            return x >= 0 && x <= width && y >= 0 && y <= height;
         }
 
         public bool HasScent(int x, int y)
